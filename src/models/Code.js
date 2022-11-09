@@ -6,6 +6,6 @@ const code = new mongoose.Schema({
   message: { type: String, require: true },
 });
 
-const codigos = mongoose.model("erros-code", code);
+const codigos = mongoose.model("erros-codes", code);
 
 export default codigos;

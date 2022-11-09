@@ -15,6 +15,7 @@ class ProblemController {
     let id = req.params.id;
     codigos.findOne();
   };
+
   static insertCode = (req, res) => {
     let codigo = new codigos(req.body);
 
