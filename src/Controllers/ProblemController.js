@@ -2,6 +2,11 @@ import { json } from "express";
 import codigos from "../models/Code.js";
 
 class ProblemController {
+  constructor() {
+    this.getSingleCode = this.getSingleCode.bind(this);
+    this.insertCode = this.insertCode.bind(this);
+  }
+
   static getCode = (req, res) => {
     codigos.find((err, codigos) => {
       res.status(200).json({
@@ -11,11 +16,13 @@ class ProblemController {
     });
   };
 
-  static getSingleCode = (req, res) => {
-    let id = req.params.id;
-    codigos.findOne();
-  };
-  static insertCode = (req, res) => {
+  async getSingleCode(req, res) {
+    let code = req.params.id;
+    const singleCode = await codigos.findOne({ code });
+    return res.status(200).json(singleCode);
+  }
+
+  async insertCode(req, res) {
     let codigo = new codigos(req.body);
 
     codigo.save((error) => {
@@ -25,6 +32,6 @@ class ProblemController {
         res.send(codigo);
       }
     });
-  };
+  }
 }
 export default ProblemController;
