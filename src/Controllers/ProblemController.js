@@ -9,10 +9,7 @@ class ProblemController {
 
   static getCode = (req, res) => {
     codigos.find((err, codigos) => {
-      res.status(200).json({
-        message: "mostrando todos os dados do usuarios",
-        codigos,
-      });
+      res.status(200).json(codigos);
     });
   };
 
